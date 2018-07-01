@@ -1,0 +1,19 @@
+alias cd..='cd ..'
+alias ls='ls --color=auto'
+alias ll='ls --color=auto -l'
+alias grep='grep --color=auto'
+alias pdf='zathura'
+alias searchpdf='pdfgrep -r -i -n'
+alias dirSize='du -ch | grep total | awk "{ print $1}"'
+alias killkxc='pkill --signal SIGKILL keepassxc'
+
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+function ytd(){
+	youtube-dl --all-subs --embed-subs -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' "$1" && notify-send "Download complete"
+}
+
+export GOPATH="$HOME/go"
+export PATH=".:$HOME/prgms:$HOME/scripts:$GOPATH/bin:$PATH"
+
+export TERM=xterm-256color
