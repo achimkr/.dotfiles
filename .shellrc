@@ -9,6 +9,7 @@ alias killkxc='pkill --signal SIGKILL keepassxc'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+alias randvid='mpv ~/yt/"$(ls ~/yt | sort -R | sed -n 1p)"'
 function ytd(){
 	youtube-dl --all-subs --embed-subs -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' "$1" && notify-send "Download complete"
 }

@@ -1,13 +1,13 @@
 set $mod Mod4
 
 #Windowtitle font
-font pango:'SF Pro Display' 13px 
+font pango:'SF Pro Display' 13px
 
 # window colors
 #                       border              background         text                 indicator
 client.focused          $bg-color           $bg-color          $text-color          $bg-color
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-bg-color 
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-bg-color 
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-bg-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-bg-color
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $urgent-bg-color
 
 #Color scheme
@@ -19,19 +19,19 @@ set $urgent-bg-color     #bd2c40
 
 #Border removal
 for_window [class="^.*"] border none
-new_window none 
-for_window [class="Termite"] border pixel 2 
+new_window none
+for_window [class="Termite"] border pixel 2
 
 # naive change focus
-bindsym $mod+Left   focus left  
-bindsym $mod+Down   focus down  
-bindsym $mod+Up     focus up    
-bindsym $mod+Right  focus right 
+bindsym $mod+Left   focus left
+bindsym $mod+Down   focus down
+bindsym $mod+Up     focus up
+bindsym $mod+Right  focus right
 
-bindsym $mod+h      focus left  
-bindsym $mod+j      focus down  
-bindsym $mod+k      focus up    
-bindsym $mod+l      focus right 
+bindsym $mod+h      focus left
+bindsym $mod+j      focus down
+bindsym $mod+k      focus up
+bindsym $mod+l      focus right
 
 # Intelligent change focus
 bindsym $mod+Control+Left  exec --no-startup-id $HOME/.config/i3/i3-tools/focus-tool left
@@ -94,7 +94,7 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+P move scratchpad
-bindsym $mod+P scratchpad show 
+bindsym $mod+P scratchpad show
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -118,7 +118,7 @@ set $workspace9 "9"
 set $workspace0 "0"
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1 
+bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
@@ -169,20 +169,20 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 bindsym $mod+b exec ~/.config/i3/togglePolybar.sh
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id ~/scripts/newTerm.sh 
-bindsym $mod+Shift+Return exec termite 
+bindsym $mod+Return exec --no-startup-id ~/scripts/newTerm.sh
+bindsym $mod+Shift+Return exec termite
 
-# start rofi 
+# start rofi
 bindsym $mod+d exec rofi -show run -sort
 bindsym $mod+q exec rofi -show window
 
 # Toggle Device
 bindsym --whole-window $mod+button2 exec --no-startup-id $HOME/.config/i3/toggleDevice.sh 11
-#bindsym --whole-window $mod+button3 exec --no-startup-id $HOME/.config/i3/toggleDevice.sh 12 
+#bindsym --whole-window $mod+button3 exec --no-startup-id $HOME/.config/i3/toggleDevice.sh 12
 
 #Locking the computer
-bindsym $mod+c exec ~/.config/i3/lock.sh 
-bindsym $mod+x exec ~/.config/i3/lock.sh && systemctl suspend 
+bindsym $mod+c exec ~/.config/i3/randomXkcd.sh
+bindsym $mod+x exec ~/.config/i3/randomXkcd.sh && systemctl suspend
 
 # Screenshot
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui -p $HOME/tmp
@@ -198,7 +198,7 @@ bindsym $mod+Control+s exec --no-startup-id ~/scripts/smileyselector.sh
 
 #Autostart applications
 exec_always --no-startup-id feh --bg-scale $HOME/.config/lowpoly.jpg
-exec_always --no-startup-id $HOME/.config/polybar/launchPolybar.sh 
+exec_always --no-startup-id $HOME/.config/polybar/launchPolybar.sh
 exec --no-startup-id dropbox
 exec --no-startup-id compton
 exec --no-startup-id redshift

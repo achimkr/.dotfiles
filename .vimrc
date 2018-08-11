@@ -19,9 +19,6 @@ Plugin 'https://github.com/kien/ctrlp.vim.git'
 "Code Autocompletion
 Plugin 'Valloric/YouCompleteMe'
 
-"Syntax checking
-Plugin 'https://github.com/vim-syntastic/syntastic.git'
-
 "Git integration
 Plugin 'https://github.com/tpope/vim-fugitive.git'
 
@@ -41,25 +38,6 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_confirm_extra_conf = 0
 "YOUCOMPLETEME-END--------------------------------------------------
-
-"SYNTASTIC------------------------------------------------------
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_quiet_messages = { "type": "style" }
-let g:syntastic_mode_map = {
-	\ "mode": "active",
-	\ "active_filetypes": [],
-	\ "passive_filetypes": ["tex", "java"] }
-
-"Only show Errors in python; -E Flag
-let g:syntastic_python_pylint_args= "-E"
-"SYNTASTIC-END--------------------------------------------------
 
 "Theming
 set t_Co=256
@@ -83,11 +61,9 @@ set hlsearch
 
 syntax on
 
-
 "Show whitespace
 set listchars=tab:▏\ ,trail:·
 set list
-
 set cursorline
 
 "intuitive paragraph jumping
