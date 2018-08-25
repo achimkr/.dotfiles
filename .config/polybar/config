@@ -43,7 +43,7 @@ font-2 = wuncon siji:pixelsize=12;3
 
 modules-left = i3 xwindow 
 modules-center = 
-modules-right = updates nmvpn eth wlan cpu memory battery temperature xbacklight volume date powermenu
+modules-right = updates vpn eth wlan cpu memory battery temperature xbacklight volume date powermenu
 
 #tray-position = 
 
@@ -286,12 +286,12 @@ menu-0-2-exec = $HOME/.config/i3/lock.sh && systemctl suspend
 menu-0-3 = "" 
 menu-0-3-exec = $HOME/.config/i3/lock.sh
 
-[module/nmvpn]
+[module/vpn]
 type = custom/script
 format = <label>
 label = %output%
 exec-if = pgrep -x openvpn
-exec = $HOME/.config/polybar/scripts/activenmvpn.sh 
+exec = $HOME/.config/polybar/scripts/activeopenvpn.sh
 interval = 5 
 
 [module/updates]

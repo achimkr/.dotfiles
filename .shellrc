@@ -3,15 +3,21 @@ alias ls='ls --color=auto'
 alias ll='ls --color=auto -l'
 alias grep='grep --color=auto'
 alias pdf='zathura'
+alias py='python'
 alias searchpdf='pdfgrep -r -i -n'
-alias dirSize='du -ch | grep total | awk "{ print $1}"'
+alias dirSize='du -ch | awk "/total/{ print $1}"'
 alias killkxc='pkill --signal SIGKILL keepassxc'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias randvid='mpv ~/yt/"$(ls ~/yt | sort -R | sed -n 1p)"'
+
 function ytd(){
 	youtube-dl --all-subs --embed-subs -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' "$1" && notify-send "Download complete"
+}
+
+function monitor-mirror(){
+	xrandr --output $1 --mode $3 --primary --output $2 --mode $3 --same-as $1
 }
 
 export GOPATH="$HOME/go"
