@@ -7,13 +7,14 @@ alias py='python'
 alias searchpdf='pdfgrep -r -i -n'
 alias dirSize='du -ch | awk "/total/{ print $1}"'
 alias killkxc='pkill --signal SIGKILL keepassxc'
+alias :wq='exit'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias randvid='mpv ~/yt/"$(ls ~/yt | sort -R | sed -n 1p)"'
 
 function ytd(){
-	youtube-dl --all-subs --embed-subs -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' "$1" && notify-send "Download complete"
+	youtube-dl --all-subs --embed-subs -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' --add-metadata --skip-unavailable-fragments "$1" && notify-send "Download complete"
 }
 
 function monitor-mirror(){
