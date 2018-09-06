@@ -8,6 +8,7 @@ alias searchpdf='pdfgrep -r -i -n'
 alias dirSize='du -ch | awk "/total/{ print $1}"'
 alias killkxc='pkill --signal SIGKILL keepassxc'
 alias :wq='exit'
+alias vim='nvim'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
@@ -23,5 +24,7 @@ function monitor-mirror(){
 
 export GOPATH="$HOME/go"
 export PATH=".:$HOME/prgms:$HOME/scripts:$GOPATH/bin:$PATH"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 export TERM=xterm-256color

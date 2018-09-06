@@ -6,30 +6,17 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 "Theming plugins
-Plugin 'https://github.com/chriskempson/base16-vim.git'
 Plugin 'https://github.com/nanotech/jellybeans.vim.git'
 
 "Preview for substitution
 Plugin 'https://github.com/markonm/traces.vim.git'
 
-"File Explorer
-Plugin 'https://github.com/scrooloose/nerdtree.git'
-Plugin 'https://github.com/kien/ctrlp.vim.git'
-
 "Code Autocompletion
 Plugin 'Valloric/YouCompleteMe'
-
-"Git integration
-Plugin 'https://github.com/tpope/vim-fugitive.git'
 
 call vundle#end()
 filetype plugin indent on
 "VUNDLE-END---------------------------------------------------------
-
-"NERDTREE-----------------------------------------------------------
-nnoremap ü :NERDTreeToggle<CR>
-
-"NERDTREE-END-------------------------------------------------------
 
 "YOUCOMPLETEME------------------------------------------------------
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"

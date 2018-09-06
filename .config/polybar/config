@@ -43,7 +43,7 @@ font-2 = wuncon siji:pixelsize=12;3
 
 modules-left = i3 xwindow 
 modules-center = 
-modules-right = updates vpn eth wlan cpu memory battery temperature xbacklight volume date powermenu
+modules-right = updates vpn eth wlan cpu memory battery temperature xbacklight volume date
 
 #tray-position = 
 
