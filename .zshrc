@@ -3,8 +3,8 @@
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zhistory
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt appendhistory autocd extendedglob nomatch MENU_COMPLETE
 unsetopt beep notify CASE_GLOB
 bindkey -v
@@ -107,6 +107,8 @@ precmd(){
 
 	if [[ ! -o login ]]; then
 	    #Set TERM_PATH Window environment variable to current working directory
-	    xprop -id $(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}') -format TERM_PATH 8s -set TERM_PATH "$(pwd)"
+		base64_path="$(echo $(pwd) | base64 -)"
+		echo "precmd $base64_path" >> /tmp/newTerm_out.txt
+		xprop -id $(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}') -format TERM_PATH 8s -set TERM_PATH $base64_path
 	fi
 }

@@ -174,7 +174,6 @@ bindsym $mod+Shift+Return exec termite
 
 # start rofi
 bindsym $mod+d exec rofi -show run -sort
-bindsym $mod+q exec rofi -show window
 
 # Toggle Device
 bindsym --whole-window $mod+button2 exec --no-startup-id $HOME/.config/i3/toggleDevice.sh 11
