@@ -9,21 +9,19 @@ alias dirSize='du -ch | awk "/total/{ print $1}"'
 alias killkxc='pkill --signal SIGKILL keepassxc'
 alias :wq='exit'
 alias vim='nvim'
+alias clip-in='xclip -i -selection "clipboard"'
+alias clip-out='xclip -o -selection "clipboard"'
+alias c='bg;disown'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias randvid='mpv ~/yt/"$(ls ~/yt | sort -R | sed -n 1p)"'
 
 function ytd(){
-	youtube-dl --all-subs --embed-subs -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' --add-metadata --skip-unavailable-fragments "$1" && notify-send "Download complete"
+	youtube-dl -o "~/yt/%(title)s-%(id)s.%(ext)s" --all-subs --embed-subs -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' --add-metadata --skip-unavailable-fragments "$1" && notify-send "Download complete"
 }
 
-function monitor-mirror(){
-	xrandr --output $1 --mode $3 --primary --output $2 --mode $3 --same-as $1
-}
-
-export GOPATH="$HOME/go"
-export PATH=".:$HOME/prgms:$HOME/scripts:$GOPATH/bin:$PATH"
+export PATH=".:$HOME/prgms:$HOME/scripts:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
