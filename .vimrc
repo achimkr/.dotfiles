@@ -21,6 +21,9 @@ Plugin 'https://github.com/vim-syntastic/syntastic.git'
 "Rust support
 Plugin 'rust-lang/rust.vim'
 
+"Asymptote syntax highlighting
+Plugin 'hura/vim-asymptote'
+
 call vundle#end()
 filetype plugin indent on
 "VUNDLE-END---------------------------------------------------------

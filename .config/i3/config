@@ -180,11 +180,11 @@ bindsym --whole-window $mod+button2 exec --no-startup-id $HOME/.config/i3/toggle
 #bindsym --whole-window $mod+button3 exec --no-startup-id $HOME/.config/i3/toggleDevice.sh 12
 
 #Locking the computer
-bindsym $mod+c exec ~/.config/i3/randomXkcd.sh
+bindsym $mod+c exec ~/.config/i3/lock.sh
 bindsym $mod+x exec ~/.config/i3/randomXkcd.sh && systemctl suspend
 
 # Screenshot
-bindsym $mod+Shift+s exec --no-startup-id flameshot gui -p $HOME/tmp
+bindsym $mod+Control+s exec --no-startup-id flameshot gui -p $HOME/tmp
 
 # Start Download URL in clipboard
 bindsym $mod+m exec --no-startup-id ~/scripts/clipboardDownload.sh "~/Downloads"
@@ -198,7 +198,7 @@ bindsym $mod+Control+s exec --no-startup-id ~/scripts/smileyselector.sh
 #Autostart applications
 exec_always --no-startup-id feh --bg-scale $HOME/.config/lowpoly.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launchPolybar.sh
-exec --no-startup-id dropbox
+exec_always --no-startup-id syncthing --no-browser
 exec --no-startup-id compton
 exec --no-startup-id redshift
 exec --no-startup-id i3-msg 'workspace $workspace0; exec /usr/bin/keepassxc'
