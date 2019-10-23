@@ -142,7 +142,7 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace0
 
 #Multi monitors control
-bindsym $mod+i move workspace to output right
+bindsym $mod+x exec "i3-msg move container to output $(echo -e 'right\nleft\nup\ndown' | rofi -dmenu)"
 bindsym $mod+o move workspace to output primary
 
 # kill focused window
@@ -174,15 +174,15 @@ bindsym $mod+Shift+Return exec termite
 
 # start rofi
 bindsym $mod+d exec rofi -show run -sort
-bindsym $mod+q exec rofi -show window
 
 # Toggle Device
 bindsym --whole-window $mod+button2 exec --no-startup-id $HOME/.config/i3/toggleDevice.sh 11
 #bindsym --whole-window $mod+button3 exec --no-startup-id $HOME/.config/i3/toggleDevice.sh 12
 
 #Locking the computer
-bindsym $mod+c exec ~/.config/i3/randomXkcd.sh
-bindsym $mod+x exec ~/.config/i3/randomXkcd.sh && systemctl suspend
+#bindsym $mod+c exec ~/.config/i3/randomXkcd.sh
+bindsym $mod+c exec ~/.config/i3/lock.sh
+#bindsym $mod+x exec ~/.config/i3/randomXkcd.sh && systemctl suspend
 
 # Screenshot
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui -p $HOME/tmp
@@ -194,12 +194,12 @@ bindsym $mod+m exec --no-startup-id ~/scripts/clipboardDownload.sh "~/Downloads"
 bindsym $mod+Control+v exec --no-startup-id ~/scripts/controlvpn.sh
 
 # Smiley Selector
-bindsym $mod+Control+s exec --no-startup-id ~/scripts/smileyselector.sh
+bindsym $mod+Control+s exec --no-startup-id ~/scripts/show_clipboard.sh
 
 #Autostart applications
 exec_always --no-startup-id feh --bg-scale $HOME/.config/lowpoly.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launchPolybar.sh
-exec --no-startup-id dropbox
+exec --no-startup-id syncthing -no-browser 
 exec --no-startup-id compton
 exec --no-startup-id redshift
 exec --no-startup-id i3-msg 'workspace $workspace0; exec /usr/bin/keepassxc'

@@ -112,3 +112,5 @@ precmd(){
 		xprop -id $(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}') -format TERM_PATH 8s -set TERM_PATH $base64_path
 	fi
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

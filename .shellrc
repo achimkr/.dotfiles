@@ -12,6 +12,7 @@ alias vim='nvim'
 alias clip-in='xclip -i -selection "clipboard"'
 alias clip-out='xclip -o -selection "clipboard"'
 alias c='bg;disown'
+alias rustdoc='cargo doc --no-deps --open -p'
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
@@ -26,3 +27,10 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 
 export TERM=xterm-256color
+export GPG_TTY=`tty`
+
+fe() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}

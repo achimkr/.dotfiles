@@ -24,3 +24,5 @@ function exitstatus {
 PROMPT_COMMAND=exitstatus
 
 [[ -f .shellrc ]] && source .shellrc
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
