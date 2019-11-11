@@ -11,10 +11,12 @@ curWinId=$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')
 program=$(xprop -id $curWinId WM_CLASS | awk '{print $3}' | sed 's/[",]//g')
 
 if [ "$program" == "termite" ]; then
-	base64_path=$(xprop -id $curWinId TERM_PATH | awk '{print $3}' | sed 's/"//g')
+	base64_path="$(xprop -id $curWinId TERM_PATH | awk '{print $3}' | sed 's/"//g')"
+	#echo "base64 = $base64_path"
 	terminal_path="$(echo $base64_path | base64 -d - )"
+	#echo "path = $terminal_path"
 
-	[ "$1" != "-s" ] && exec termite -d $terminal_path
+	[ "$1" != "-s" ] && exec termite -d "$terminal_path"
 else
 	exec termite
 fi

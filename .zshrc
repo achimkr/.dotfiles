@@ -107,8 +107,8 @@ precmd(){
 
 	if [[ ! -o login ]]; then
 	    #Set TERM_PATH Window environment variable to current working directory
-		base64_path="$(echo $(pwd) | base64 -)"
-		echo "precmd $base64_path" >> /tmp/newTerm_out.txt
+		base64_path=$(echo $(pwd) | base64 -w 0 -)
+		#echo "precmd $base64_path"
 		xprop -id $(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}') -format TERM_PATH 8s -set TERM_PATH $base64_path
 	fi
 }

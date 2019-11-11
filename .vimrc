@@ -42,8 +42,8 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'cpp': ['clangd'],
     \ 'c': ['clangd'],
-    \ 'java': ['jdtls', '-data', getcwd()],
     \ }
+"    \ 'java': ['jdtls', '-data', getcwd()],
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
