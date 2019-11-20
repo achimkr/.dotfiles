@@ -69,7 +69,8 @@ browser = firefox
 foreground      = #a5a2a2
 foreground_bold = #a5a2a2
 cursor          = #a5a2a2
-background      = #090300
+#background      = #090300
+background = rgba(0, 0, 0, 1)
 
 # black
 color0  = #090300

@@ -1,20 +1,39 @@
 filetype off
+let mapleader = " "
 
+<<<<<<< HEAD
 "VUNDLE-------------------------------------------------------------
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+=======
+""Plug-vim-------------------------------------------------------------
+call plug#begin('~/.vim/plugged')
+>>>>>>> tmp_branch
 
 "Theming plugins
-Plugin 'https://github.com/nanotech/jellybeans.vim.git'
+Plug 'https://github.com/nanotech/jellybeans.vim.git'
 
 "Preview for substitution
-Plugin 'https://github.com/markonm/traces.vim.git'
+Plug 'https://github.com/markonm/traces.vim.git'
 
-"Code Autocompletion
-Plugin 'Valloric/YouCompleteMe'
+"Fuzzyfind
+"Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
 
+Plug 'airblade/vim-rooter'
+
+" Autocomplete
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+
+"Rust
+Plug 'rust-lang/rust.vim' 
+
+<<<<<<< HEAD
 "Syntax checking
 Plugin 'https://github.com/vim-syntastic/syntastic.git'
 
@@ -38,6 +57,96 @@ let g:ycm_confirm_extra_conf = 0
 
 "let g:ycm_filetype_blacklist = { 'java': 1 }
 "YOUCOMPLETEME-END--------------------------------------------------
+=======
+"Language Server
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+"GPG 
+Plug 'https://github.com/jamessan/vim-gnupg'
+call plug#end()
+filetype plugin indent on
+"VUNDLE-END---------------------------------------------------------
+
+"LanguageClient-neovim----------------------------------------------
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ 'cpp': ['clangd'],
+    \ 'c': ['clangd'],
+    \ }
+"    \ 'java': ['jdtls', '-data', getcwd()],
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> T :call LanguageClient#textDocument_hover()<CR>
+
+function SetLSPShortcuts()
+	if has_key(g:LanguageClient_serverCommands, &filetype)
+		nnoremap gd :call LanguageClient#textDocument_definition()<CR>
+		nnoremap <leader>r :call LanguageClient#textDocument_rename()<CR>
+		"nnoremap <leader>f :call LanguageClient#textDocument_formatting()<CR>
+		nnoremap <leader>t :call LanguageClient#textDocument_typeDefinition()<CR>
+		nnoremap <leader>x :call LanguageClient#textDocument_references()<CR>
+		nnoremap <leader>a :call LanguageClient_workspace_applyEdit()<CR>
+		nnoremap <leader>c :call LanguageClient#textDocument_completion()<CR>
+		nnoremap <leader>t :call LanguageClient#textDocument_hover()<CR>
+		nnoremap <leader>S :call LanguageClient_textDocument_documentSymbol()<CR>
+		nnoremap <leader>M :call LanguageClient_contextMenu()<CR>
+	endif
+endfunction()
+
+autocmd FileType * call SetLSPShortcuts()
+"LanguageClient-neovim----------------------------------------------
+
+"FZF----------------------------------------------------------------
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+
+" In Neovim, you can set up fzf window using a Vim command
+let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '-tabnew' }
+let g:fzf_layout = { 'window': '10new' }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Enable per-command history.
+" CTRL-N and CTRL-P will be automatically bound to next-history and
+" previous-history instead of down and up. If you don't like the change,
+" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+nnoremap <LEADER>s :FZF<CR>
+"FZF----------------------------------------------------------------
+
+"DEOPLETE-----------------------------------------------------------
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+"DEOPLETE-----------------------------------------------------------
+>>>>>>> tmp_branch
 
 "SYNTASTIC----------------------------------------------------------
 set statusline+=%#warningmsg#
@@ -99,11 +208,18 @@ vnoremap <C-l> $
 nnoremap <C-h> ^
 vnoremap <C-h> ^
 
+inoremap jk <esc>
+
 "Hide search highlighting
 nnoremap ä :nohls<CR>
+
+"Center buffer
+nnoremap <SPACE><SPACE> zz
 
 "Delete trailing whitespace
 command! Trim %s/\s\+$//g
 
+"Swapping text
+vnoremap <C-X> <Esc>`.``gvP``P
 "Create End Tag in html files
-autocmd BufReadPost *.html inoremap > ><ESC>F<lywf>a</<ESC>pa><ESC>F<i
+"autocmd BufReadPost *.html inoremap > ><ESC>F<lywf>a</<ESC>pa><ESC>F<i
