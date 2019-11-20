@@ -44,6 +44,8 @@ currStr = 'POWER_SUPPLY_ENERGY_NOW'
 curr0 = int(b0[currStr])
 curr1 = int(b1[currStr])
 
+perc0 = curr0 / full0
+perc1 = curr1 / full1
 perc = (curr0 + curr1) / (full0 + full1)
 
 sym = ""
@@ -60,4 +62,4 @@ elif perc >= 1/8:
 else:
 	sym = ""
 
-print("{}{:.0f}%".format(sym, perc * 100))
+print("{}{:.0f}|{:.0f}%".format(sym, perc0 * 100, perc1 * 100))

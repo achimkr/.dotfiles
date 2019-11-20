@@ -106,6 +106,7 @@ bindsym $mod+a focus parent
 bindsym $mod+y focus child
 
 #Workspace variables
+set $workspace0 "0"
 set $workspace1 "1"
 set $workspace2 "2"
 set $workspace3 "3"
@@ -115,7 +116,6 @@ set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace0 "0"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -200,6 +200,6 @@ bindsym $mod+Control+s exec --no-startup-id ~/scripts/show_clipboard.sh
 exec_always --no-startup-id feh --bg-scale $HOME/.config/lowpoly.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launchPolybar.sh
 exec --no-startup-id syncthing -no-browser 
-exec --no-startup-id compton
+#exec --no-startup-id compton
 exec --no-startup-id redshift
 exec --no-startup-id i3-msg 'workspace $workspace0; exec /usr/bin/keepassxc'

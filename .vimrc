@@ -164,5 +164,7 @@ nnoremap <SPACE><SPACE> zz
 "Delete trailing whitespace
 command! Trim %s/\s\+$//g
 
+"Swapping text
+vnoremap <C-X> <Esc>`.``gvP``P
 "Create End Tag in html files
 "autocmd BufReadPost *.html inoremap > ><ESC>F<lywf>a</<ESC>pa><ESC>F<i
