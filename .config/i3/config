@@ -180,14 +180,9 @@ bindsym --whole-window $mod+button2 exec --no-startup-id $HOME/.config/i3/toggle
 #bindsym --whole-window $mod+button3 exec --no-startup-id $HOME/.config/i3/toggleDevice.sh 12
 
 #Locking the computer
-<<<<<<< HEAD
-bindsym $mod+c exec ~/.config/i3/lock.sh
-bindsym $mod+x exec ~/.config/i3/randomXkcd.sh && systemctl suspend
-=======
 #bindsym $mod+c exec ~/.config/i3/randomXkcd.sh
 bindsym $mod+c exec ~/.config/i3/lock.sh
 #bindsym $mod+x exec ~/.config/i3/randomXkcd.sh && systemctl suspend
->>>>>>> tmp_branch
 
 # Screenshot
 bindsym $mod+Control+s exec --no-startup-id flameshot gui -p $HOME/tmp
@@ -197,9 +192,6 @@ bindsym $mod+m exec --no-startup-id ~/scripts/clipboardDownload.sh "~/Downloads"
 
 # Vpn Selector
 bindsym $mod+Control+v exec --no-startup-id ~/scripts/controlvpn.sh
-
-# Smiley Selector
-bindsym $mod+Control+s exec --no-startup-id ~/scripts/show_clipboard.sh
 
 #Autostart applications
 exec_always --no-startup-id feh --bg-scale $HOME/.config/lowpoly.jpg
