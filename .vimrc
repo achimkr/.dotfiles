@@ -1,16 +1,8 @@
-filetype off
+filetype on
 let mapleader = " "
 
-<<<<<<< HEAD
-"VUNDLE-------------------------------------------------------------
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-=======
 ""Plug-vim-------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
->>>>>>> tmp_branch
 
 "Theming plugins
 Plug 'https://github.com/nanotech/jellybeans.vim.git'
@@ -29,35 +21,12 @@ Plug 'airblade/vim-rooter'
 "Plug 'roxma/nvim-yarp'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 "Rust
 Plug 'rust-lang/rust.vim' 
+nnoremap <LEADER>f :RustFmt<CR>
 
-<<<<<<< HEAD
-"Syntax checking
-Plugin 'https://github.com/vim-syntastic/syntastic.git'
-
-"Rust support
-Plugin 'rust-lang/rust.vim'
-
-"Asymptote syntax highlighting
-Plugin 'hura/vim-asymptote'
-
-call vundle#end()
-filetype plugin indent on
-"VUNDLE-END---------------------------------------------------------
-
-"YOUCOMPLETEME------------------------------------------------------
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_min_num_of_chars_for_completion = 100
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_confirm_extra_conf = 0
-
-"let g:ycm_filetype_blacklist = { 'java': 1 }
-"YOUCOMPLETEME-END--------------------------------------------------
-=======
 "Language Server
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -66,23 +35,23 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 "GPG 
 Plug 'https://github.com/jamessan/vim-gnupg'
+
+"Idris
+Plug 'https://github.com/idris-hackers/idris-vim'
+
 call plug#end()
 filetype plugin indent on
 "VUNDLE-END---------------------------------------------------------
 
 "LanguageClient-neovim----------------------------------------------
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ 'rust': ['ra_lsp_server'],
     \ 'cpp': ['clangd'],
     \ 'c': ['clangd'],
     \ }
-"    \ 'java': ['jdtls', '-data', getcwd()],
+    "\ 'java': ['jdtls', '-data', getcwd()],
+    "\ 'rust': ['rustup', 'run', 'stable', 'rls'],
 
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> T :call LanguageClient#textDocument_hover()<CR>
 
 function SetLSPShortcuts()
 	if has_key(g:LanguageClient_serverCommands, &filetype)
@@ -97,10 +66,21 @@ function SetLSPShortcuts()
 		nnoremap <leader>S :call LanguageClient_textDocument_documentSymbol()<CR>
 		nnoremap <leader>M :call LanguageClient_contextMenu()<CR>
 	endif
+	nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+	" Or map each action separately
+	nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+	nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+	nnoremap <silent> T :call LanguageClient#textDocument_hover()<CR>
 endfunction()
 
-autocmd FileType * call SetLSPShortcuts()
+autocmd FileType rust,cpp,c call SetLSPShortcuts()
 "LanguageClient-neovim----------------------------------------------
+
+function SetUpIdris()
+	nnoremap T \t
+endfunction()
+
+autocmd FileType idris call SetUpIdris()
 
 "FZF----------------------------------------------------------------
 let g:fzf_action = {
@@ -146,28 +126,6 @@ nnoremap <LEADER>s :FZF<CR>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "DEOPLETE-----------------------------------------------------------
->>>>>>> tmp_branch
-
-"SYNTASTIC----------------------------------------------------------
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_python_checkers = ['python', 'pylint']
-let g:syntastic_python_pylint_args = "-E"
-let g:syntastic_mode_map = {
-    \ "mode": "passive",
-    \ "active_filetypes": ["rust"],
-    \ "passive_filetypes": [] }
-
-let g:syntastic_ruts_checkers = ['cargo']
-
-"SYNTASTIC-END------------------------------------------------------
 
 "Theming
 set t_Co=256
@@ -209,6 +167,10 @@ nnoremap <C-h> ^
 vnoremap <C-h> ^
 
 inoremap jk <esc>
+
+set mouse=a
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
 
 "Hide search highlighting
 nnoremap ä :nohls<CR>
