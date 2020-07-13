@@ -228,7 +228,7 @@ ramp-volume-0 = ""
 ramp-volume-1 = ""
 ramp-volume-2 = ""
 
-format-muted-prefix = ""
+format-muted-prefix = "M"
 format-muted-foreground = ${colors.foreground}
 
 [module/battery]

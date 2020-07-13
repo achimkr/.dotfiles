@@ -9,10 +9,10 @@ fi
 
 if [ "$2" != "-nc" -a "$3" != "-nc" ]; then
     echo "Starting chat";
-    firefox --new-window https://www.twitch.tv/popout/$1/chat?popout=sda &
+    priv_firefox.sh --new-window https://www.twitch.tv/popout/$1/chat?popout=sda &
 fi
 
 if [ "$2" != "-nv" -a "$3" != "-nv" ]; then
     echo "Starting video";
-    streamlink twitch.tv/$1 best &
+    streamlink --local de_DE twitch.tv/$1 best &
 fi

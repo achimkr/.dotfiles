@@ -1,5 +1,6 @@
 filetype on
 let mapleader = " "
+let maplocalleader = ","
 
 ""Plug-vim-------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
@@ -17,21 +18,22 @@ Plug 'junegunn/fzf'
 Plug 'airblade/vim-rooter'
 
 " Autocomplete
-"Plug 'ncm2/ncm2'
-"Plug 'roxma/nvim-yarp'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" Broken because of python-msgpack package being <1.0.0
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"let g:deoplete#enable_at_startup = 1
+"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 
 "Rust
 Plug 'rust-lang/rust.vim' 
 nnoremap <LEADER>f :RustFmt<CR>
 
-"Language Server
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" COC
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "GPG 
 Plug 'https://github.com/jamessan/vim-gnupg'
@@ -43,44 +45,17 @@ call plug#end()
 filetype plugin indent on
 "VUNDLE-END---------------------------------------------------------
 
-"LanguageClient-neovim----------------------------------------------
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['ra_lsp_server'],
-    \ 'cpp': ['clangd'],
-    \ 'c': ['clangd'],
-    \ }
-    "\ 'java': ['jdtls', '-data', getcwd()],
-    "\ 'rust': ['rustup', 'run', 'stable', 'rls'],
+"COC----------------------------------------------------------------
+so ~/.coc.nvim
+"COC----------------------------------------------------------------
 
-
-function SetLSPShortcuts()
-	if has_key(g:LanguageClient_serverCommands, &filetype)
-		nnoremap gd :call LanguageClient#textDocument_definition()<CR>
-		nnoremap <leader>r :call LanguageClient#textDocument_rename()<CR>
-		"nnoremap <leader>f :call LanguageClient#textDocument_formatting()<CR>
-		nnoremap <leader>t :call LanguageClient#textDocument_typeDefinition()<CR>
-		nnoremap <leader>x :call LanguageClient#textDocument_references()<CR>
-		nnoremap <leader>a :call LanguageClient_workspace_applyEdit()<CR>
-		nnoremap <leader>c :call LanguageClient#textDocument_completion()<CR>
-		nnoremap <leader>t :call LanguageClient#textDocument_hover()<CR>
-		nnoremap <leader>S :call LanguageClient_textDocument_documentSymbol()<CR>
-		nnoremap <leader>M :call LanguageClient_contextMenu()<CR>
-	endif
-	nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-	" Or map each action separately
-	nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-	nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-	nnoremap <silent> T :call LanguageClient#textDocument_hover()<CR>
-endfunction()
-
-autocmd FileType rust,cpp,c call SetLSPShortcuts()
-"LanguageClient-neovim----------------------------------------------
-
+"Idris--------------------------------------------------------------
 function SetUpIdris()
 	nnoremap T \t
 endfunction()
 
 autocmd FileType idris call SetUpIdris()
+"Idris--------------------------------------------------------------
 
 "FZF----------------------------------------------------------------
 let g:fzf_action = {

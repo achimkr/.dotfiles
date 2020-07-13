@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -x
+global=$(echo *global*.json)
+
+if [ $# -ge 2 ]; then
+	global=$2
+fi
+
+month=$(basename -s .json $1)
+java -jar $HOME/prgms/TimeSheetGenerator/target/TimeSheetGenerator-*-jar-with-dependencies.jar --file $global $month.json $month.tex
+if [ $? -eq 0 ]; then
+	latexmk -pdf $month.tex
+	latexmk -c
+	rm $month.tex
+else
+	exit 42
+fi

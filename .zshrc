@@ -3,8 +3,8 @@
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zhistory
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=1000000
+SAVEHIST=1000000
 setopt appendhistory autocd extendedglob nomatch MENU_COMPLETE
 unsetopt beep notify CASE_GLOB
 bindkey -v
@@ -102,7 +102,7 @@ precmd(){
 	if [ "$EXITSTATUS" -eq 0 ]; then
 		PS1="$GREEN<$OFF%n$GREEN@$OFF%M$GREEN>$OFF"	
 	else
-		PS1="$RED<$OFF%n$RED@$OFF%M$RED>$OFF"	
+		PS1="$RED<$EXITSTATUS$OFF%n$RED@$OFF%M$RED>$OFF"	
 	fi
 
 	if [[ ! -o login ]]; then

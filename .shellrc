@@ -22,6 +22,10 @@ function ytd(){
 	youtube-dl -o "~/yt/%(title)s-%(id)s.%(ext)s" --all-subs --embed-subs -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' --add-metadata --skip-unavailable-fragments "$1" && notify-send "Download complete"
 }
 
+function rand() {
+	echo $(($RANDOM % $1))
+}
+
 export PATH=".:$HOME/prgms:$HOME/scripts:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"
