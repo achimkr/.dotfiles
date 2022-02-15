@@ -20,7 +20,7 @@ set $urgent-bg-color     #bd2c40
 #Border removal
 for_window [class="^.*"] border none
 new_window none
-for_window [class="Termite"] border pixel 2
+for_window [class="alacritty"] border pixel 2
 
 # naive change focus
 bindsym $mod+Left   focus left
@@ -171,8 +171,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 bindsym $mod+b exec ~/.config/i3/togglePolybar.sh
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id ~/Daten/scripts/newTerm.sh
-bindsym $mod+Shift+Return exec termite
+bindsym $mod+Return exec --no-startup-id ~/.config/i3/newTerm.sh
+bindsym $mod+Shift+Return exec alacritty
 
 # start rofi
 bindsym $mod+d exec rofi -show run -sort
