@@ -171,7 +171,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 bindsym $mod+b exec ~/.config/i3/togglePolybar.sh
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id ~/scripts/newTerm.sh
+bindsym $mod+Return exec --no-startup-id ~/Daten/scripts/newTerm.sh
 bindsym $mod+Shift+Return exec termite
 
 # start rofi
@@ -183,11 +183,11 @@ bindsym --whole-window $mod+button2 exec --no-startup-id $HOME/.config/i3/toggle
 
 #Locking the computer
 #bindsym $mod+c exec ~/.config/i3/randomXkcd.sh
-bindsym $mod+c exec ~/.config/i3/lock.sh
+bindsym $mod+c exec i3lock -i ~/.config/lowpoly.png
 #bindsym $mod+x exec ~/.config/i3/randomXkcd.sh && systemctl suspend
 
-# Screenshot
-bindsym $mod+Control+s exec --no-startup-id flameshot gui -p $HOME/tmp
+# ScreenshotG
+bindsym $mod+Control+s exec --no-startup-id flameshot gui
 
 # Start Download URL in clipboard
 bindsym $mod+m exec --no-startup-id ~/scripts/clipboardDownload.sh "~/Downloads"
@@ -198,6 +198,7 @@ bindsym $mod+Control+v exec --no-startup-id ~/scripts/controlvpn.sh
 #Autostart applications
 exec_always --no-startup-id feh --bg-scale $HOME/.config/lowpoly.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launchPolybar.sh
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id syncthing -no-browser 
 exec --no-startup-id picom
 exec --no-startup-id redshift

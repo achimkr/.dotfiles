@@ -41,6 +41,9 @@ Plug 'https://github.com/jamessan/vim-gnupg'
 "Idris
 Plug 'https://github.com/idris-hackers/idris-vim'
 
+"Zig
+Plug 'https://github.com/ziglang/zig.vim'
+
 call plug#end()
 filetype plugin indent on
 "VUNDLE-END---------------------------------------------------------
@@ -121,6 +124,8 @@ noremap <C-n> :set relativenumber!<CR>
 set clipboard=unnamedplus
 
 set hlsearch
+set incsearch
+set ignorecase
 
 syntax on
 
@@ -130,10 +135,10 @@ set list
 set cursorline
 
 "intuitive paragraph jumping
-nnoremap <C-j> }
-vnoremap <C-j> }
-nnoremap <C-k> {
-vnoremap <C-k> {
+nnoremap <C-j> 10j
+vnoremap <C-j> 10j
+nnoremap <C-k> 10k
+vnoremap <C-k> 10k
 
 "intuitive line start/end jumping
 nnoremap <C-l> $
@@ -156,7 +161,10 @@ nnoremap <SPACE><SPACE> zz
 "Delete trailing whitespace
 command! Trim %s/\s\+$//g
 
+so ~/.vim/abbreviations.vim
+
 "Swapping text
 vnoremap <C-X> <Esc>`.``gvP``P
 "Create End Tag in html files
 "autocmd BufReadPost *.html inoremap > ><ESC>F<lywf>a</<ESC>pa><ESC>F<i
+

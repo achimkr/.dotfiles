@@ -69,3 +69,10 @@ end
 define cptype
 call print_type($arg0), (void)putchar('\n')
 end
+
+define javadebug
+  handle SIGUSR1 nostop pass
+  handle SIGSEGV nostop pass
+  handle SIGILL  nostop pass
+  handle SIGQUIT nostop pass
+end

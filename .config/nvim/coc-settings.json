@@ -1,0 +1,22 @@
+{
+	"languageserver": {
+		"rust": {
+			"command": "/home/achim/prgms/rust-analyzer-git/rust-analyzer/target/release/rust-analyzer",
+			"filetypes": ["rust"],
+			"rootPatterns": ["Cargo.toml"],
+			"args": ["--log-file", "/home/achim/tmp/ra.out", "-v"],
+			"settings": {
+				"rust-analyzer": {
+					"cargo": {
+						"runBuildScripts": true
+					}
+				}
+			}
+		},
+		"zls": {
+			"command": "/home/achim/prgms/zls/zig-cache/bin/zls",
+			"filetypes": ["zig"]
+		}
+	},
+	"java.home": "/usr/lib/jvm/java-11-openjdk"
+}

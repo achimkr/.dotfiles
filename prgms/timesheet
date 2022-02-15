@@ -1,6 +1,5 @@
 #!/bin/sh
 
-set -x
 global=$(echo *global*.json)
 
 if [ $# -ge 2 ]; then

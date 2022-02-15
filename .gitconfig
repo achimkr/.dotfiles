@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = main
+
+[core]
+    hooksPath = /home/achim/.githooks
+[user]
+	email = neuring@pm.me
